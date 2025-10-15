@@ -15,7 +15,10 @@ def island_species_average(data, species_col="species", body_col="body_mass_g", 
     for row in data:
         sp = row[species_col]
         sex = row[sex_col].lower()
-
+        try:
+            mass = float(row[body_col])
+        except:
+            continue 
         if sp not in species_dict:
             species_dict[sp] = {"male": [], "female": []}
         species_dict[sp][sex].append(mass)
