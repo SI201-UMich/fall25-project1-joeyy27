@@ -19,6 +19,7 @@ def island_species_average(data, species_col="species", body_col="body_mass_g", 
             mass = float(row[body_col])
         except:
             continue 
+
         if sp not in species_dict:
             species_dict[sp] = {"male": [], "female": []}
         species_dict[sp][sex].append(mass)
@@ -61,3 +62,6 @@ def flipper_length_trend(data, flipper_col="flipper_length_mm", year_col="year",
                     result[sp][int(yr)] = round(sum(lengths) / len(lengths), 1)
     return result
 
+if __name__ == "__main__":
+    data = load_csv("test.csv") 
+    
