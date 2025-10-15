@@ -10,7 +10,10 @@ def load_csv(file_path):
     data = []
     csvfile = open(file_path, newline='')
     reader = csv.DictReader(csvfile)
+
     for row in reader:
+        if "" in row:
+            del row[""]
         data.append(row)
     csvfile.close()
     return data
@@ -41,7 +44,6 @@ def island_species_average(data, species_col="species", body_col="body_mass_g", 
     return result
 
 def flipper_length_trend(data, flipper_col="flipper_length_mm", year_col="year", species_col="species"):
-    """Average flipper length per species per year."""
     trend_dict = {}
     species_set = set()
 
@@ -96,7 +98,4 @@ def write_flipper_trend(filename, data):
     f.close()
 
 if __name__ == "__main__":
-    data = load_csv("penguins.csv")  
-    species_avg = island_species_average(data)
-    flipper_trend = flipper_length_trend(data)
-    
+    data = load_csv("test.csv")  
