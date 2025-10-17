@@ -1,0 +1,14 @@
+Island Species Average (Joey's function):
+Adelie: {'average': 3708, 'male': 4335, 'female': 3080}
+Gentoo: {'average': 5714, 'male': 5850, 'female': 4625}
+Chinstrap: {'average': 3646, 'male': 3817, 'female': 3475}
+
+Flipper Length Trend (Joey's function):
+Adelie: {2008: 189.0, 2007: 188.0, 2009: 192.0}
+Chinstrap: {2007: 196.7, 2009: 194.3}
+Gentoo: {2007: 227.0, 2009: 223.0, 2008: 224.3}
+
+Bill Average Length & Depth (Andrew's functions):
+Adelie - Torgersen | Avg Bill Length: 39.23333333333334, Avg Bill Depth: 18.666666666666668, Count: 3
+Gentoo - Biscoe | Avg Bill Length: 52.166666666666664, Avg Bill Depth: 15.97777777777778, Count: 9
+Chinstrap - Dream | Avg Bill Length: 48.51666666666667, Avg Bill Depth: 18.53333333333333, Count: 6
