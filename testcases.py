@@ -75,3 +75,79 @@ class TestPenguinsJoey(unittest.TestCase):
 
 
 
+#andrew's test cases 
+# -----------------------------
+
+class TestPenguinAveragesAndrew(unittest.TestCase):
+
+    @classmethod
+    def setUpClass(cls):
+        cls.rows = penguin_pullinfo("test.csv")
+        print(f"[tests] loaded {len(cls.rows)} rows from test.csv")
+
+    def _expected_avg(self, rows, species, island, column_key):
+        total = 0.0
+        count = 0
+        for r in rows:
+            if r["species"] == species and r["island"] == island:
+                v = str(r[column_key]).strip()
+                if v != "NA" and v != "":
+                    total += float(v)
+                    count += 1
+        if count == 0:
+            return None, 0
+        return total / count, count
+
+    # --- Bill length tests ---
+    def test_bill_average_length_general_adelie_torgersen(self):
+        out = bill_average_length(self.rows, "Adelie", "Torgersen")[0]
+        exp_avg, exp_cnt = self._expected_avg(self.rows, "Adelie", "Torgersen", "bill_length_mm")
+        if exp_avg is None:
+            self.assertEqual(out["average_bill_length"], None)
+        else:
+            self.assertEqual(round(out["average_bill_length"], 6), round(exp_avg, 6))
+        self.assertEqual(out["count"], exp_cnt)
+
+    def test_bill_average_length_general_gentoo_biscoe(self):
+        out = bill_average_length(self.rows, "Gentoo", "Biscoe")[0]
+        exp_avg, exp_cnt = self._expected_avg(self.rows, "Gentoo", "Biscoe", "bill_length_mm")
+        if exp_avg is None:
+            self.assertEqual(out["average_bill_length"], None)
+        else:
+            self.assertEqual(round(out["average_bill_length"], 6), round(exp_avg, 6))
+        self.assertEqual(out["count"], exp_cnt)
+
+    def test_bill_average_length_edge_no_pair(self):
+        out = bill_average_length(self.rows, "Chinstrap", "Biscoe")[0]
+        self.assertEqual(out["average_bill_length"], None)
+        self.assertEqual(out["count"], 0)
+
+    def test_bill_average_length_edge_case_sensitivity(self):
+        out = bill_average_length(self.rows, "Adelie", "torgersen")[0]
+        self.assertEqual(out["average_bill_length"], None)
+        self.assertEqual(out["count"], 0)
+
+    # --- Bill depth tests ---
+    def test_bill_average_depth_general_adelie_torgersen(self):
+        out = bill_average_depth(self.rows, "Adelie", "Torgersen")[0]
+        exp_avg, exp_cnt = self._expected_avg(self.rows, "Adelie", "Torgersen", "bill_depth_mm")
+        if exp_avg is None:
+            self.assertEqual(out["average_bill_depth"], None)
+        else:
+            self.assertEqual(round(out["average_bill_depth"], 6), round(exp_avg, 6))
+        self.assertEqual(out["count"], exp_cnt)
+
+    def test_bill_average_depth_general_gentoo_biscoe(self):
+        out = bill_average_depth(self.rows, "Gentoo", "Biscoe")[0]
+        exp_avg, exp_cnt = self._expected_avg(self.rows, "Gentoo", "Biscoe", "bill_depth_mm")
+        if exp_avg is None:
+            self.assertEqual(out["average_bill_depth"], None)
+        else:
+            self.assertEqual(round(out["average_bill_depth"], 6), round(exp_avg, 6))
+        self.assertEqual(out["count"], exp_cnt)
+
+    
+
+
+if __name__ == "__main__":
+    unittest.main(verbosity=2)
