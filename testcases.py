@@ -41,4 +41,37 @@ class TestPenguinsJoey(unittest.TestCase):
         result = island_species_average(data)
         self.assertEqual(result, {})
 
-    
+    # --- Flipper trend tests ---
+    def test_flipper_general_case1(self):
+        data = [
+            {"species": "Adelie", "flipper_length_mm": "180", "year": "2007"},
+            {"species": "Adelie", "flipper_length_mm": "190", "year": "2008"}
+        ]
+        result = flipper_length_trend(data)
+        self.assertEqual(result["Adelie"][2007], 180)
+        self.assertEqual(result["Adelie"][2008], 190)
+
+    def test_flipper_general_case2(self):
+        data = [
+            {"species": "Adelie", "flipper_length_mm": "180", "year": "2007"},
+            {"species": "Gentoo", "flipper_length_mm": "230", "year": "2007"}
+        ]
+        result = flipper_length_trend(data)
+        self.assertEqual(result["Adelie"][2007], 180)
+        self.assertEqual(result["Gentoo"][2007], 230)
+
+    def test_flipper_edge_case1(self):
+        data = [
+            {"species": "Adelie", "flipper_length_mm": "", "year": "2007"},
+            {"species": "Adelie", "flipper_length_mm": "", "year": "2008"}
+        ]
+        result = flipper_length_trend(data)
+        self.assertEqual(result, {"Adelie": {}})
+
+    def test_flipper_edge_case2(self):
+        data = []
+        result = flipper_length_trend(data)
+        self.assertEqual(result, {})
+
+
+
