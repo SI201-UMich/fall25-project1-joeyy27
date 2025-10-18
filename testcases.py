@@ -146,7 +146,15 @@ class TestPenguinAveragesAndrew(unittest.TestCase):
             self.assertEqual(round(out["average_bill_depth"], 6), round(exp_avg, 6))
         self.assertEqual(out["count"], exp_cnt)
 
-    
+    def test_bill_average_depth_edge_no_pair(self):
+        out = bill_average_depth(self.rows, "Gentoo", "Dream")[0]
+        self.assertEqual(out["average_bill_depth"], None)
+        self.assertEqual(out["count"], 0)
+
+    def test_bill_average_depth_edge_case_sensitivity(self):
+        out = bill_average_depth(self.rows, "Gentoo", "biscoe")[0]
+        self.assertEqual(out["average_bill_depth"], None)
+        self.assertEqual(out["count"], 0)
 
 
 if __name__ == "__main__":

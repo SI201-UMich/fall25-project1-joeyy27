@@ -186,10 +186,20 @@ def save_results_to_file(data, filename):
             ("Gentoo", "Biscoe"),
             ("Chinstrap", "Dream")
         ]
+        results = []
+
         for species, island in examples:
             length = bill_average_length(penguin_data, species, island)[0]
             depth = bill_average_depth(penguin_data, species, island)[0]
-            file.write(f"{species} - {island} | Avg Bill Length: {length['average_bill_length']}, Avg Bill Depth: {depth['average_bill_depth']}, Count: {length['count']}\n")
+            results.append({
+                "species": species,
+                "island": island,
+                "average_bill_length": length["average_bill_length"],
+                "average_bill_depth": depth["average_bill_depth"],
+                "count": length["count"]
+            })
+
+        file.write(str(results))
 
 if __name__ == "__main__":
     data = load_csv("test.csv")

@@ -9,6 +9,4 @@ Chinstrap: {2007: 196.7, 2009: 194.3}
 Gentoo: {2007: 227.0, 2009: 223.0, 2008: 224.3}
 
 Bill Average Length & Depth (Andrew's functions):
-Adelie - Torgersen | Avg Bill Length: 39.23333333333334, Avg Bill Depth: 18.666666666666668, Count: 3
-Gentoo - Biscoe | Avg Bill Length: 52.166666666666664, Avg Bill Depth: 15.97777777777778, Count: 9
-Chinstrap - Dream | Avg Bill Length: 48.51666666666667, Avg Bill Depth: 18.53333333333333, Count: 6
+[{'species': 'Adelie', 'island': 'Torgersen', 'average_bill_length': 39.23333333333334, 'average_bill_depth': 18.666666666666668, 'count': 3}, {'species': 'Gentoo', 'island': 'Biscoe', 'average_bill_length': 52.166666666666664, 'average_bill_depth': 15.97777777777778, 'count': 9}, {'species': 'Chinstrap', 'island': 'Dream', 'average_bill_length': 48.51666666666667, 'average_bill_depth': 18.53333333333333, 'count': 6}]
